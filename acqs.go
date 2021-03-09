@@ -95,7 +95,7 @@ func acqcom(db *sqlx.DB, when time.Time, oid, nid int) {
 			continue
 		}
 		if cnt > 0 {
-			fmt.Printf("enrollment %d needs manual update, it intersects %v but also has new company's enrollments 'select * from enrollments where uuid = '%s' and organization_id in (%d, %d) order by start, end'\n", id, when, uuid, oid, nid)
+			fmt.Printf("enrollment %d needs manual update, it intersects %v but also has new company's enrollments 'select * from enrollments where uuid = '%s' and organization_id in (%d, %d) order by start, end;'\n", id, when, uuid, oid, nid)
 			continue
 		}
 		_, err = tx.Exec("update enrollments set end = ? where id = ?", when, id)
